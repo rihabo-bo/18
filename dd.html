@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samsoum World</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #feadd5;
+            color: white;
+            place-items: center;
+        }
+        /* Card */
+        .love-section{
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background: #feadd5;
+            position: relative;
+        }
+        .birthday{
+            position: relative;
+            top: 50px;
+            cursor: pointer;
+            animation: up 3s linear infinite;
+        }
+       .envelope{
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: #f08080;
+            display: grid;
+            place-items: center;
+        }
+       .envelope::before{
+            content: '';
+            position: absolute;
+            width: 212px;
+            height: 212px;
+            background: #ff87ab;
+            transform: rotate(45deg);
+            top: -105px;
+            left: 44px;
+            border-radius: 30px 0 0 0;
+        }
+        .front{
+            position: absolute;
+            border-right: 180px solid #ffa6c1;
+            border-top: 95px solid transparent;
+            border-bottom: 100px solid transparent;
+            left: 120px;
+            top: 5px;
+            width: 0;
+            height: 0;
+            z-index: 10;
+        }
+        .front::before{
+            position: absolute;
+            content: '';
+            border-left: 300px solid #ffc4d6;
+            border-top: 195px solid transparent;
+            left: -120px;
+            top: -95px;
+        }
+        .card{
+            position: relative;
+            width: 250px;
+            height: 180px;
+            background: #f9efef;
+            border-radius: 2px;
+            display: grid;
+            place-items: center;
+            transition: 1s;
+        }
+        .card::before{
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid #003049;
+            border-style: dashed;
+        }
+        .birthday:hover .card{
+            transform: translateY(-100px);
+        }
+        .card .text{
+         font-family: 'Brush Script MT', cursive;
+            font-size: 25px;
+         text-align: center;
+           line-height: 25px;
+         color: #ff58a1;
+        }
+        .card .heart{
+          position: relative;
+          width: 35px;
+         height: 35px;
+          background: red;
+          bottom: 20px;
+          transform: rotate(45deg);
+          border-radius: 50% 0 0 50%;
+        }
+        .card .heart::before{
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: red;
+          border-radius: 0 50% 50% 0;
+         right: 0;
+         transform: rotate(-90deg);
+          transform-origin: top;
+        }
+        .card .heart::after{
+          content: '';
+         position: absolute;
+          width: 100%;
+         height: 100%;
+         background: red;
+         right: -18px;
+         }
+        @keyframes up{
+         0%, 100%{
+             transform: translateY(0);
+        }
+        50%{
+             transform: translateY(-30px);
+        }
+        }
+        .birthday::before{
+           content: '';
+          position: absolute;
+         width: 330px;
+         height: 25px;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, .3);
+          top: 265px;
+            left: -15px;
+           animation: scale 3s linear infinite;
+        }
+        @keyframes scale{
+           0%, 100%{
+             transform: scaleX(1);
+            }
+            50%{
+                transform: scaleX(.85);
+            }
+        }
+
+        .hearts {
+            position: absolute;
+            top: 15px;
+
+        }
+        @keyframes heart {
+            0% {
+                transform: translateY(0) rotate(-45deg) scale(0.3);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-150px) rotate(-45deg)scale(1.3);
+                opacity: 0.5;
+            }
+        }
+
+        .one, .two, .three, .four, .five {
+            background-color: #d62828;
+            display: inline-block;
+            height: 10px;
+            width: 10px;
+            margin: 0 10px;
+            position: relative;
+            transform: rotate(-45deg);
+            top: 50px
+        }
+        .one::before, .one::after, .two::before, .two::after, .three::before, .three::after, .four::before, .four::after, .five::before, .five::after {
+            content: "";
+            background-color: #d62828;
+            border-radius: 50px;
+            width: 10px;
+            height: 10px;
+            position: absolute;
+        }
+        .one::before, .two::before, .three::before, .four::before, .five::before {
+            top: -5px;
+            left: 0;
+        }
+        .one::after, .two::after, .three::after, .four::after, .five::after {
+            left: 5px;
+            top: 0;
+        }
+        .one {
+            left: 10px;
+            animation: heart 1s ease-out infinite;
+        }
+        .two {
+            left: 30px;
+            animation: heart 2s ease-out infinite;
+        }
+        .three {
+            left: 50px;
+            animation: heart 1.5s ease-out infinite;
+        }
+        .four {
+            left: 70px;
+            animation: heart 2.3s ease-out infinite;
+        }
+        .five {
+            left: 90px;
+            animation: heart 1.7s ease-out infinite;
+        }
+        
+
+        /* Barbie Movies Section */
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            font-size: 2em;
+            margin-top: 20px;
+            color: #ffffff;
+        }
+        video {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .movie {
+            background: #ff69b4;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .movie:hover {
+            background: #ff1493;
+        }
+
+        /* Journal Section */
+        .journal-section {
+            background-color: white;
+            padding: 20px;
+        }
+        .journal-section h2 {
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+        .journal-box {
+            width: 80%;
+            max-width: 600px;
+            margin: auto;
+        }
+        .note {
+            width: 90%;
+            padding: 10px;
+            font-size: 14px;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            resize: none;
+            min-height: 50px;
+            margin-bottom: 10px;
+            display: block;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000;
+        }
+        .delete-btn {
+            display: block;
+            margin: 10px auto 0;
+            padding: 5px 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .note-textarea {
+            font-family: var(--font-family, Arial), sans-serif, Helvetica;
+            color: var(--text-color, #000);
+        }
+
+        /* Agriculture Planning Section */
+        .agriculture-section {
+            background-color: white;
+            padding: 20px;
+            color: green;
+        }
+        .plans {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .plan {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 15px;
+        }
+        .plan input, .plan textarea {
+            width: 100%;
+            border: 1px solid green;
+            border-radius: 5px;
+            padding: 5px;
+            font-size: 14px;
+            color: green;
+            background: white;
+        }
+        .plan button {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+        .plan img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        /* pic */ 
+        .h4 {
+            font-size: 25px;
+            margin-top: 20px;
+            color: #ffffff;
+        }
+        #upload {
+            margin: 20px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            max-width: 1000px;
+            width: 100%;
+        }
+        .gallery div {
+            position: relative;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+    
+
+    </style>
+</head>
+<body>
+
+    <!--Card-->
+    <div class="love-section">
+      <div class="birthday">
+          <div class="envelope">
+              <div class="card">
+                   <div class="text">Happy Birthday🌷</br>Smsoum Laeziz al Adulte</br>مرحبا بيك فسيت تاعك🥳</div>
+                  </div>
+                 <div class="heart"></div>
+                 <div class="hearts">
+                 <div class="one"></div>
+                 <div class="two"></div>
+                 <div class="three"></div>
+                 <div class="four"></div>
+                 <div class="five"></div>
+                 </div>
+             </div>
+             <div class="front"></div>
+         </div>
+      </div>
+    <!-- Barbie Movies Section -->
+    <h1>🎀 Barbie Movies 🎀</h1>
+    <div class="container">
+        <!-- YouTube Video Player -->
+        <iframe id="videoPlayer" width="560" height="315"
+                src="https://www.youtube.com/embed/X8iNStNkAo0?si=dliW0BAo-eV7eUrL"
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+    
+        <!-- Movie List Buttons -->
+        <div class="movie-list" id="movieList"></div>
+    </div>
+    
+
+    <!-- Journaling Section -->
+    <div class="journal-section">
+        <h2>💖 Write Your Thoughts 💖</h2>
+        <div class="journal-box" id="journalContainer"></div>
+        <button onclick="addNote()">➕ Add Note</button>
+        <div>
+            <label for="fontSelect">Font:</label>
+            <select id="fontSelect" onchange="changeFont()">
+                <option value="Arial">Arial</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Brush Script MT">Brush Script MT</option>
+            </select>
+            <label for="colorSelect">Color:</label>
+            <select id="colorSelect" onchange="changeColor()">
+                <option value="black">Black</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Agriculture Planning Section -->
+    <div class="agriculture-section">
+        <h2>🌱 Agriculture Planning 🌱</h2>
+        <div class="plans" id="plansContainer"></div>
+        <button onclick="addPlan()">➕ Add Plan</button>
+        
+    </div>
+    <!--pic-->
+    <h4>🫶🏻your private Pinterest🫶🏻</h4>
+     <input type="file" id="upload" accept="image/*">
+     <div class="gallery" id="gallery">
+    </div>
+    <script>
+        // Barbie Movies List
+        const movies = [
+            { name: "Barbie and The Diamond Castle", link: "https://www.youtube.com/embed/X8iNStNkAo0?rel=0&controls=0&showinfo=0&modestbranding=1" },
+            { name: "Barbie and the Magic of Pegasus", link: "https://www.youtube.com/embed/Olut9HwVh60?si=VYyLyrv9yK9oCQxJ"},
+            { name: "Barbie and the Secret Door", link: "https://www.youtube.com/embed/SJZpjPr3E50?si=WrssXw86xf2sSAC1"},
+            { name: "Barbie in the Pink Shoes", link: "https://www.youtube.com/embed/vdPuhhiLH_I?si=dlAyPqBYmYHKmqyc"},
+            { name: "Barbie of Swan Lake", link: "https://www.youtube.com/embed/Bi--WGMMOBQ?si=HcdAvBAT9V4MjbFS"},
+            { name: "Barbie Mariposa and her Butterfly Fairy Friends", link: "https://www.youtube.com/embed/h5NhIAzh-Wk?si=pBjaol1pnFSqVlXg"},
+            { name: "Barbie as the Island Princess", link:"https://www.youtube.com/embed/mqty9p-8DJ0?si=8QyaokrNtwX4vMiC"},
+            { name: "Barbie Mariposa & the Fairy Princess", link:"https://www.youtube.com/embed/u4BB-e08a-w?si=N9VvCd74aaDZLvYt" },
+            { name: "Barbie the Princess and the Popstar", link: "https://www.youtube.com/embed/cv1XcXbT7sA?si=_8dqQx5wNh-vk6MQ"},
+            { name: "Barbie and her Sisters in a Pony Tale", link: "https://www.youtube.com/embed/UDGJl6LMYTs?si=ydnKlYvDiJK0sMK6"},
+            { name: "Barbie in The Nucracker", link: "https://www.youtube.com/embed/LcO7-wAGe_s?si=hdph81f3oO5ScLwo"},
+            { name: "Barbie A Fairy Secret", link: "https://www.youtube.com/embed/qYxcu7B77zU?si=-fJCxLedZ6_btsBH"},
+            { name: "Barbie Spy Squad", link: "https://www.youtube.com/embed/1T4q0EAxOmo?si=uAqe5KgxmyUVaKAs"},
+            { name: "Barbie and the Three Musketeers", link: "https://www.youtube.com/embed/GxAEG-UhEAw?si=VzO6T8jQ4OelKe4r" },
+            { name: "Barbie and the 12 dancing princesses", link: "https://www.youtube.com/embed/pnSCE_QXanw?si=YzTjyeAjSRgkLPo-"},
+            { name: "Barbie in Princess Power", link: "https://www.youtube.com/embed/CoYy9o9FgDc?si=MSbLXg_9txVFC4mR"},
+            { name: "Barbie in the Princess Charm School", link: "https://www.youtube.com/embed/klqb8i-hDYo?si=OKSu9Bvwj9dfr4aQ"},
+            { name: "Barbie in Rock and Royals", link: "https://www.youtube.com/embed/LYPJUij5hPY?si=o-iodPT4ChP-ns9B" },
+            { name: "Barbie Fairytopia Magic of the Rainbow", link: "https://www.youtube.com/embed/jk15yZRA1Lg?si=CeaxpB1XNfr-oI-s"},
+            { name: "Barbie as Rapunzel", link: "https://www.youtube.com/embed/foqBguVa2_M?si=lwnmGVW-qZCQEr5w"},
+        ];
+
+        const movieList = document.getElementById("movieList");
+        const videoPlayer = document.getElementById("videoPlayer");
+
+         // Generate movie list with clickable buttons
+         movies.forEach(movie => {
+         let movieButton = document.createElement("div");
+         movieButton.classList.add("movie");
+         movieButton.textContent = movie.name;
+         movieButton.onclick = () => {
+          videoPlayer.src = movie.link; // Update the iframe src to play the selected movie
+         };
+          movieList.appendChild(movieButton);
+        });
+        // Journaling Functionality
+        function addNote() {
+            const container = document.getElementById("journalContainer");
+            const noteDiv = document.createElement("div");
+            noteDiv.classList.add("note-container");
+
+            const note = document.createElement("textarea");
+            note.classList.add("note");
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "🗑️ Delete";
+            deleteBtn.classList.add("delete-btn");
+            deleteBtn.onclick = () => { noteDiv.remove(); saveJournal(); };
+
+            noteDiv.appendChild(note);
+            noteDiv.appendChild(deleteBtn);
+            container.appendChild(noteDiv);
+
+            note.addEventListener("input", saveJournal);
+        }
+
+        function saveJournal() {
+            const notes = [];
+            document.querySelectorAll("#journalContainer .note").forEach(note => {
+                notes.push(note.value);
+            });
+            localStorage.setItem("journalEntries", JSON.stringify(notes));
+        }
+
+        function loadJournal() {
+            const notes = JSON.parse(localStorage.getItem("journalEntries")) || [];
+            notes.forEach(text => {
+                addNote();
+                const note = document.querySelector("#journalContainer .note:last-child");
+                note.value = text;
+            });
+        }
+
+        function changeFont() {
+            const font = document.getElementById("fontSelect").value;
+            document.querySelectorAll("#journalContainer .note").forEach(note => {
+                note.style.fontFamily = font;
+            });
+        }
+
+        function changeColor() {
+            const color = document.getElementById("colorSelect").value;
+            document.querySelectorAll("#journalContainer .note").forEach(note => {
+                note.style.color = color;
+            });
+        }
+
+        // Agriculture Planning Functionality
+        function addPlan() {
+            const container = document.getElementById("plansContainer");
+
+            const plan = document.createElement("div");
+            plan.classList.add("plan");
+
+            const title = document.createElement("input");
+            title.type = "text";
+            title.placeholder = "Title";
+
+            const date = document.createElement("input");
+            date.type = "date";
+
+            const note = document.createElement("textarea");
+            note.placeholder = "Write your plan...";
+
+            const imgInput = document.createElement("input");
+            imgInput.type = "file";
+            imgInput.accept = "image/*";
+            const img = document.createElement("img");
+
+            imgInput.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) { img.src = e.target.result; };
+                    reader.readAsDataURL(file);
+                }
+            };
+
+            const saveBtn = document.createElement("button");
+            saveBtn.textContent = "Save";
+            saveBtn.onclick = () => { savePlans(); };
+
+            plan.appendChild(title);
+            plan.appendChild(date);
+            plan.appendChild(note);
+            plan.appendChild(imgInput);
+            plan.appendChild(img);
+            plan.appendChild(saveBtn);
+
+            container.appendChild(plan);
+        }
+
+        function savePlans() {
+            const plans = [];
+            document.querySelectorAll("#plansContainer .plan").forEach(plan => {
+                const title = plan.querySelector("input[type='text']").value;
+                const date = plan.querySelector("input[type='date']").value;
+                const note = plan.querySelector("textarea").value;
+                const img = plan.querySelector("img").src;
+                plans.push({ title, date, note, img });
+            });
+            localStorage.setItem("agriculturePlans", JSON.stringify(plans));
+        }
+
+        function loadPlans() {
+            const plans = JSON.parse(localStorage.getItem("agriculturePlans")) || [];
+            plans.forEach(planData => {
+                addPlan();
+                const plan = document.querySelector("#plansContainer .plan:last-child");
+                plan.querySelector("input[type='text']").value = planData.title;
+                plan.querySelector("input[type='date']").value = planData.date;
+                plan.querySelector("textarea").value = planData.note;
+                plan.querySelector("img").src = planData.img;
+            });
+        }
+
+        // Load saved data on page load
+        window.onload = function() {
+            loadJournal();
+            loadPlans();
+        };
+
+        // pic //
+        let db;
+        const request = indexedDB.open("ImageGalleryDB", 1);
+
+        request.onupgradeneeded = function(event) {
+            db = event.target.result;
+            if (!db.objectStoreNames.contains("images")) {
+                db.createObjectStore("images", { keyPath: "id", autoIncrement: true });
+            }
+        };
+
+        request.onsuccess = function(event) {
+            db = event.target.result;
+            loadImages();
+        };
+
+        request.onerror = function(event) {
+            console.log("Error opening IndexedDB:", event.target.error);
+        };
+
+        document.getElementById("upload").addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgData = { id: new Date().getTime(), src: e.target.result };
+                    saveImage(imgData);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function saveImage(imgData) {
+            const transaction = db.transaction(["images"], "readwrite");
+            const store = transaction.objectStore("images");
+            store.add(imgData);
+            transaction.oncomplete = function() {
+                loadImages();
+            };
+            transaction.onerror = function(event) {
+                console.log("Error saving image:", event.target.error);
+            };
+        }
+
+        function loadImages() {
+            const gallery = document.getElementById("gallery");
+            gallery.innerHTML = "";
+            const transaction = db.transaction(["images"], "readonly");
+            const store = transaction.objectStore("images");
+            const request = store.getAll();
+
+            request.onsuccess = function(event) {
+                const images = event.target.result;
+                images.forEach(imgData => {
+                    const div = document.createElement("div");
+                    div.setAttribute("data-id", imgData.id);
+                    const img = document.createElement("img");
+                    img.src = imgData.src;
+                    const btn = document.createElement("button");
+                    btn.textContent = "X";
+                    btn.classList.add("delete-btn");
+                    btn.onclick = function() {
+                        deleteImage(imgData.id, div);
+                    };
+                    div.appendChild(img);
+                    div.appendChild(btn);
+                    gallery.appendChild(div);
+                });
+            };
+        }
+
+        function deleteImage(id, element) {
+            const transaction = db.transaction(["images"], "readwrite");
+            const store = transaction.objectStore("images");
+            const request = store.delete(id);
+            request.onsuccess = function() {
+                element.remove();
+            };
+            request.onerror = function(event) {
+                console.log("Error deleting image:", event.target.error);
+            };
+        }
+
+    </script>
+
+</body>
+</html>
